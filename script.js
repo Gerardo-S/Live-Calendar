@@ -2,23 +2,24 @@
 var todaysDate$ = $("#currentDay");
 var momentDateformat = moment().format('dddd, MMMM Do');
 todaysDate$.text(momentDateformat);
-
-
+var currentTime = moment().format(' h:mm a');
+console.log(currentTime);
+var calendarhour = ["10:00 pm", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm"];
+console.log(calendarhour);
 var savedInputs = [];
-
+// ------------------------------localStorage------------------------------
 renderLastDescription();
 function renderLastDescription() {
 
-    if (savedInputs== null) {
+    if (savedInputs == null) {
         return;
     }
-    var x= JSON.parse(localStorage.getItem("description"));
-    
-    
+    var x = JSON.parse(localStorage.getItem("description"));
+
+
     // savedInputs.push(x);
-    console.log(x);
-    console.log(savedInputs);
-    if(x== null){
+
+    if (x == null) {
         return;
     }
     $(".description1").text(x[0]);
@@ -34,7 +35,6 @@ function renderLastDescription() {
 };
 
 
-
 $(document).on("click", ".saveBtn", function () {
     var description = ($(this).prev().val());
     savedInputs.push(description);
@@ -43,15 +43,26 @@ $(document).on("click", ".saveBtn", function () {
 
 
     renderLastDescription();
-    
+
 
 });
 
+// -----------------------------------------------localStorage end-------------------
 
-// Row blocks will change color based on current time 
-// Set interval in which blocks refresh and change color 
-// Compare current time with hours in the past & future 
-// set current color to red
-// set past color to gray 
-// set future colors to green
-// use for loop 
+// Color change to current hour-------------
+console.log(calendarhour[0]);
+
+if (currentTime = $("#hour-9")) {
+
+    alert("this works");
+
+    // for hours 9-5pm if it matches current time change color to red
+    // hours 9-5 can be found using hour class
+    var currentDiv = $("#hour-9");
+    currentDiv.css("background-color", "red");
+    console.log(currentDiv);
+
+
+
+};
+
