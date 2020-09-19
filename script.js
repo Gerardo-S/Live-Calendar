@@ -54,7 +54,6 @@ console.log(calendarhour[0]);
 
 if (currentTime = $("#hour-9")) {
 
-    alert("this works");
 
     // for hours 9-5pm if it matches current time change color to red
     // hours 9-5 can be found using hour class
