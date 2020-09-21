@@ -2,11 +2,12 @@
 var todaysDate$ = $("#currentDay");
 var momentDateformat = moment().format('dddd, MMMM Do');
 todaysDate$.text(momentDateformat);
-var currentTime = moment().format(' h:mm a');
+var currentTime = moment().format(' k:mm ');
 console.log(currentTime);
-var calendarhour = ["10:00 pm", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm"];
-console.log(calendarhour);
+var calendarHour = ["9:00" , "10:00" , "11:00" ,"12:00" , "13:00" , "14:00" , "15:00" , "16:00" , "17:00"];
+console.log(calendarHour);
 var savedInputs = [];
+resetColor();
 // ------------------------------localStorage------------------------------
 renderLastDescription();
 function renderLastDescription() {
@@ -49,19 +50,35 @@ $(document).on("click", ".saveBtn", function () {
 
 // -----------------------------------------------localStorage end-------------------
 
-// Color change to current hour-------------
-console.log(calendarhour[0]);
 
-if (currentTime = $("#hour-9")) {
+// -----------------------------------Description color change based on current time------------------------------------------------------
+function resetColor (){
+    for (var i = 0;i<calendarHour.length; i++ ){
+    var idHour= "[id$="  + (9+ i)  + "]";
+    
+    if (parseInt(calendarHour[i]) == parseInt(currentTime)) {
+
+        $(idHour).css("background-color", "#ff6961");
+    
+    }
+    // If currentTime is greater than the time text change background color to gray
+    else if (parseInt(currentTime) > parseInt(calendarHour[i])) {
+    
+        $(idHour).css("background-color", "#d3d3d3" );
+    } 
+    // else this is in the past, change the color green
+    else {
+    
+        $(idHour).css("background-color", "#77dd77");
+    
+    }
+    };
 
 
-    // for hours 9-5pm if it matches current time change color to red
-    // hours 9-5 can be found using hour class
-    var currentDiv = $("#hour-9");
-    currentDiv.css("background-color", "red");
-    console.log(currentDiv);
+}
 
+// --------------------------------Description color change ends here ---------------------------------------------------------------------------
 
-
-};
-
+// --------------------------------Refresh page to show color changes----------------------------------------------------
+// refresh color every 15 seconds
+setInterval(resetColor(), 15,000);
